@@ -2,8 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { PublicLayout } from "../layouts/PublicLayout";
 import { AppLayout } from "../layouts/AppLayout";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { LandingPage } from "../pages/LandingPage";
 
 export const router = createBrowserRouter([
   {
@@ -14,8 +13,7 @@ export const router = createBrowserRouter([
         index: true,
         element: (
           <>
-            <Button>Home</Button>,
-            <Input placeholder="Digite seu e-mail" />
+            <LandingPage />,
           </>
         ),
       },

@@ -1,7 +1,9 @@
+import { LandingPage } from "./pages/LandingPage";
+
 function App() {
   return (
     <div className="p-8">
-      <h1 className="text-4xl font-bold">SafeVault</h1>
+      <LandingPage />
     </div>
   );
 }

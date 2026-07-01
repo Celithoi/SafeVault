@@ -1,7 +1,14 @@
+import { useState } from "react";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
-export function Hero() {
+interface HeroProps {
+  onStart: (email: string) => void;
+}
+
+export function Hero({ onStart }: HeroProps) {
+  const [email, setEmail] = useState("");
+
   return (
     <section className="flex flex-col items-center justify-center text-center px-4 py-20 bg-slate-900 text-white min-h-[70vh]">
       <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-3xl mb-6">
@@ -17,8 +24,13 @@ export function Hero() {
           type="email"
           placeholder="Digite seu melhor e-mail..."
           className="w-full"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <Button className="w-full sm:w-auto whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-lg transition-colors">
+        <Button
+          className="w-full sm:w-auto whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-lg transition-colors"
+          onClick={() => onStart(email)}
+        >
           Começar
         </Button>
       </div>

@@ -3,8 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { PublicLayout } from "../layouts/PublicLayout";
 import { AppLayout } from "../layouts/AppLayout";
 import { LandingPage } from "../pages/LandingPage";
-import { LoginPage } from "../pages/LoginPage";
-import { RegisterPage } from "../pages/RegisterPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { FoldersPage } from "../pages/FoldersPage";
 import { ProfilePage } from "../pages/ProfilePage";
@@ -20,14 +18,6 @@ export const router = createBrowserRouter([
         element: <LandingPage />,
       },
     ],
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
   },
   {
     path: "/app",

@@ -55,7 +55,7 @@ export function SideBar() {
       {/* Rodapé da Sidebar: Botão Sair */}
       <div className="border-t border-slate-900 pt-4">
         <Link
-          to="/login"
+          to="/"
           className="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
         >
           <span>🚪</span> Sair

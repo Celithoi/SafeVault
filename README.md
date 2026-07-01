@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+SafeVault — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for SafeVault, a zero-knowledge password manager built as a full-stack portfolio project. This package contains the client application; the API lives in a separate backend/ package (NestJS + Prisma + PostgreSQL).
 
-Currently, two official plugins are available:
+Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+SafeVault lets users store and organize sensitive credentials with a zero-knowledge architecture — encryption happens client-side (AES-256 + Argon2), so the server never has access to plaintext data.
 
-## React Compiler
+This frontend currently covers:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+Public landing page with an authentication flow (login/signup) handled through a single modal, no dedicated /login or /register routes
+Authenticated app shell (/app) with Dashboard, Folders, Profile, and Settings pages
+Fully responsive layout
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Backend integration is the next milestone — the UI is functionally complete and ready to be wired to real endpoints.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+React 18 + TypeScript
+Vite — dev server and build tool
+Tailwind CSS — styling
+React Router — client-side routing
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Project Structure
+
+src/
+├── components/     # Reusable UI building blocks (Button, Input, Header, AuthModal, ...)
+├── layouts/        # Route-level layouts (PublicLayout, AppLayout)
+├── pages/          # Route-level pages (LandingPage, DashboardPage, FoldersPage, ...)
+├── routes/         # React Router configuration
+├── hooks/          # Custom hooks
+├── services/       # API client / integration layer
+├── types/          # Shared TypeScript types
+├── styles/         # Global styles
+└── assets/         # Static assets
+
+Getting Started
+
+bash# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+
+The app runs at http://localhost:5173 by default.
+
+Available Scripts
+
+CommandDescriptionnpm run devStarts the Vite dev server with HMRnpm run buildType-checks and builds for productionnpm run previewServes the production build locallynpm run lintRuns ESLint
+
+Authentication Flow
+
+Login and signup are handled by a single AuthModal component rather than dedicated pages:
+
+
+Clicking Entrar or Criar Conta in the header opens the modal on the corresponding tab
+The Hero section's email input feeds directly into the signup tab, pre-filling the email field
+The modal closes on outside click, ESC, or successful submission
+No routing is involved — this keeps the auth experience fast and avoids full page reloads for a flow that doesn't need shareable URLs
+
+
+Roadmap
+
+
+ Connect authentication forms to the backend API
+ Session/token handling
+ Encrypt/decrypt flow for stored credentials (client-side, zero-knowledge)
+ Folder and item management wired to real data
+
+
+Status
+
+Frontend UI: feature-complete for this phase.
+Backend: not yet started — see the root repository README for the full project scope.
